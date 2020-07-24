@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" method="post">
+    出版社名称: <input type="text" name="pub_name">
+    {% if error %}
+{#        <br>#}
+        <script>
+        {#var b = "error info" + {{ error }};#}
+        alert("{{ error }}");
+        </script>
+    {% endif %}
+{#    <span>{{ error }}</span>#}
+    <br>
+    <button>提交</button>
+</form>
+</body>
+</html>
