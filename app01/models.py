@@ -6,7 +6,7 @@ class Publisher(models.Model):
 
 class Book(models.Model):
     name = models.CharField(max_length=32)
-    # publisher_id = models.ForeignKey(Publisher)
+    # publisher = models.ForeignKey(Publisher)
     # models.CASCADE 为级联删除
     # models.PROTECT 保护
     # models.SET(val) # 删除后设置为指定值

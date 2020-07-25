@@ -17,7 +17,7 @@ def publisher_add(request):
         if models.Publisher.objects.filter(name=name):
             return render(request, "publisher_add.html", {"error": "出版社已存在"})
         models.Publisher.objects.create(name=name)
-        return redirect("/publisher_list")
+        return redirect("/publisher_list/")
 
     return render(request, "publisher_add.html")
     pass
@@ -27,7 +27,7 @@ def publisher_del(request):
     obj = models.Publisher.objects.filter(pk=del_id)
     obj.delete()
 
-    return redirect("/publisher_list")
+    return redirect("/publisher_list/")
 
 
 def publisher_edit(request):
@@ -36,6 +36,19 @@ def publisher_edit(request):
     if request.method == "POST":
         pub_obj.name = request.POST.get("pub_name", "")
         pub_obj.save()
-        return redirect("/publisher_list")
+        return redirect("/publisher_list/")
 
     return render(request, "publisher_edit.html", {"pk": pub_obj})
+
+
+# 展示书籍
+def book_list(request):
+    # 查询所有数据，
+    # 返回一个页面
+    all_books = models.Book.objects.all()
+    return render(request, "book_list.html", {"all_book": all_books})
+
+
+def book_add(request):
+    return render(request, "book_add.html")
+    return None

@@ -38,7 +38,7 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="/publisher_list">出版社列表 <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/publisher_list/">出版社列表 <span class="sr-only">(current)</span></a></li>
                 <li><a href="#">Reports</a></li>
                 <li><a href="#">Analytics</a></li>
                 <li><a href="#">Export</a></li>
@@ -63,8 +63,8 @@
                             <td>{{ i.id }}</td>
                             <td>{{ i.name }}</td>
                             <td>
-                                <a class="btn btn-danger btn-sm" href="/publisher_del?id={{ i.id }}">删除</a>
-                                <a class="btn btn-primary btn-sm" href="/publisher_edit?pk={{ i.pk }}">编辑</a>
+                                <a class="btn btn-danger btn-sm" href="/publisher_del/?id={{ i.id }}">删除</a>
+                                <a class="btn btn-primary btn-sm" href="/publisher_edit/?pk={{ i.pk }}">编辑</a>
                             </td>
                         </tr>
                     {% endfor %}

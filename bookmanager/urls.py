@@ -18,8 +18,11 @@ from django.urls import path
 from app01 import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('publisher_list', views.publisher_list),
-    path('publisher_add', views.publisher_add),
-    path('publisher_del', views.publisher_del),
-    path('publisher_edit', views.publisher_edit),
+    path('publisher_list/', views.publisher_list),
+    path('publisher_add/', views.publisher_add),
+    path('publisher_del/', views.publisher_del),
+    path('publisher_edit/', views.publisher_edit),
+
+    path(r'book_list/', views.book_list),
+    path(r'book_add/', views.book_add)
 ]
