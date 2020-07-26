@@ -1,5 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from app01 import models
+
+
 # Create your views here.
 def publisher_list(request):
     # 返回所有出版社信息
@@ -8,6 +10,7 @@ def publisher_list(request):
     #     name = i.name
 
     return render(request, "publisher_list.html", context={"all_publisher": all_publisher})
+
 
 def publisher_add(request):
     if request.method == "POST":
@@ -21,6 +24,7 @@ def publisher_add(request):
 
     return render(request, "publisher_add.html")
     pass
+
 
 def publisher_del(request):
     del_id = request.GET.get("id")
@@ -50,5 +54,19 @@ def book_list(request):
 
 
 def book_add(request):
-    return render(request, "book_add.html")
+    if request.method == "POST":
+        book_name = request.POST.get("book_name")
+        pub_id = request.POST.get("pub")
+        if not book_name:
+            all_publishers = models.Publisher.objects.all()
+            return render(request, "book_add.html", {"all_publishers": all_publishers, "error": "填写错误"})
+        # models.Book.objects.create(name=book_name, publisher=models.Publisher.objects.get(pk=pub_id))
+        try:
+            models.Book.objects.create(name=book_name, publisher_id=pub_id)
+            return redirect('/book_list/')
+        except Exception:
+            all_publishers = models.Publisher.objects.all()
+            return render(request, "book_add.html", {"all_publishers": all_publishers})
+    all_publishers = models.Publisher.objects.all()
+    return render(request, "book_add.html", {"all_publishers": all_publishers})
     return None

@@ -5,6 +5,28 @@
     <title>Title</title>
 </head>
 <body>
+{% if error %}
+        <script>
+        alert("{{ error }}");
+        </script>
+    {% endif %}
+<form action="" method="post">
+    <p>
+        书名: <input type="text" name="book_name">
+    </p>
+    <p>
+        出版社:
+        <select name="pub" id="">
+            {% for publisher in all_publishers %}
+                <option value="{{ publisher.pk }}">{{ publisher.name }}</option>
+            {% endfor %}
+        </select>
+    </p>
+    <p>
+        <button>提交</button>
+    </p>
 
+
+</form>
 </body>
 </html>
