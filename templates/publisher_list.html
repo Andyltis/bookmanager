@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ch">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -39,19 +39,21 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="/publisher_list/">出版社列表 <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Reports</a></li>
+                <li><a href="/book_list/">书籍列表</a></li>
+{#                <li><a href="#">Reports</a></li>#}
                 <li><a href="#">Analytics</a></li>
                 <li><a href="#">Export</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h2 class="sub-header">出版社列表</h2>
+            <a class="btn btn-primary btn-sm" href="/publisher_add/">新增</a>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr>
                         <th>序号</th>
-                        <th>id</th>
+{#                        <th>id</th>#}
                         <th>出版社名称</th>
                         <th>操作</th>
                     </tr>
@@ -60,7 +62,7 @@
                     {% for i in all_publisher %}
                         <tr>
                             <td>{{ forloop.counter }}</td>
-                            <td>{{ i.id }}</td>
+{#                            <td>{{ i.id }}</td>#}
                             <td>{{ i.name }}</td>
                             <td>
                                 <a class="btn btn-danger btn-sm" href="/publisher_del/?id={{ i.id }}">删除</a>
@@ -78,15 +80,8 @@
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-<!--    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>-->
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-{#    <script src="../../assets/js/vendor/holder.min.js"></script>#}
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-{#    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>#}
-
 
 <div class="xl-chrome-ext-bar" id="xl_chrome_ext_{4DB361DE-01F7-4376-B494-639E489D19ED}" style="display: none;">
     <div class="xl-chrome-ext-bar__logo"></div>
@@ -95,31 +90,5 @@
     <a id="xl_chrome_ext_close" href="javascript:;" class="xl-chrome-ext-bar__close"></a>
 </div>
 </body>
-{#<body>#}
-{#<a href="/publisher_add">新增</a>#}
-{#    <table border="1">#}
-{#        <thead>#}
-{#            <tr>#}
-{#                <th>序号</th>#}
-{#                <th>id</th>#}
-{#                <th>出版社名称</th>#}
-{#                <th>操作</th>#}
-{#            </tr>#}
-{#        </thead>#}
-{#        <tbody>#}
-{#            {% for i in all_publisher %}#}
-{#                <tr>#}
-{#                <td>{{forloop.counter}}</td>#}
-{#                <td>{{i.id}}</td>#}
-{#                <td>{{i.name}}</td>#}
-{#                <td>#}
-{#                    <a href="/publisher_del?id={{ i.id }}">删除</a>#}
-{#                    <a href="/publisher_edit?pk={{ i.pk }}">编辑</a>#}
-{#                </td>#}
-{#            </tr>#}
-{#            {% endfor %}#}
-{##}
-{#        </tbody>#}
-{#    </table>#}
-{#</body>#}
+
 </html>

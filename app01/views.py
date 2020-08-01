@@ -69,4 +69,29 @@ def book_add(request):
             return render(request, "book_add.html", {"all_publishers": all_publishers})
     all_publishers = models.Publisher.objects.all()
     return render(request, "book_add.html", {"all_publishers": all_publishers})
-    return None
+
+
+# 删除书籍
+def book_del(request):
+    book_id = request.GET.get('id')
+    obj = models.Book.objects.filter(pk=book_id)
+    obj.delete()
+    return redirect('/book_list/')
+
+
+def book_edit(request):
+    pk = request.GET.get("id")
+    book_obj = models.Book.objects.get(pk=pk)
+    all_publishers = models.Publisher.objects.all()
+    if request.method == "POST":
+        # book_obj.name = request.POST.get("book_name", "")
+        # book_obj.publisher_id = request.POST.get("pub", "")
+        # book_obj.save()
+        # 方法二
+        book_name = request.POST.get("book_name", "")
+        pub_id = request.POST.get("pub", "")
+        models.Book.objects.filter(pk=pk).update(name=book_name, publisher_id=pub_id)
+
+        return redirect("/book_list/")
+
+    return render(request, "book_edit.html", {"pk": book_obj, "all_publishers": all_publishers})
