@@ -18,6 +18,8 @@ from django.urls import path
 from app01 import views
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.index),
+
     path('publisher_list/', views.publisher_list),
     path('publisher_add/', views.publisher_add),
     path('publisher_del/', views.publisher_del),
@@ -27,4 +29,9 @@ urlpatterns = [
     path(r'book_add/', views.book_add),
     path(r'book_del/', views.book_del),
     path(r'book_edit/', views.book_edit),
+
+    path(r'author_list/', views.author_list),
+    path(r'author_add/', views.author_add),
+    path(r'author_del/', views.author_del),
+    path(r'author_edit/', views.author_edit),
 ]

@@ -1,3 +1,42 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#</head>#}
+{#<body>#}
+{#<table border="1">#}
+{#    <thread>#}
+{#        <tr>#}
+{#            <th>序号</th>#}
+{#            <th>姓名</th>#}
+{#            <th>代表作</th>#}
+{#            <th>操作</th>#}
+{#        </tr>#}
+{#    </thread>#}
+{#    <tbody>#}
+{#    {% for author in all_authors %}#}
+{#        <tr>#}
+{#        <td>{{ forloop.counter }}</td>#}
+{#        <td>{{ author.name }}</td>#}
+{#        <td>#}
+{#            {% for book in author.books.all %}#}
+{#            《{{ book.name }}》#}
+{#            {% endfor %}#}
+{#            #}
+{#        </td>#}
+{#        <td>#}
+{#            <a href="/author_del/?id={{ author.pk }}">删除</a>#}
+{#            <a href="/author_edit/?id={{ author.pk }}">编辑</a>#}
+{#        </td>#}
+{#        </tr>#}
+{#    {% endfor %}#}
+{##}
+{#    </tbody>#}
+{#</table>#}
+{#</body>#}
+{#</html>#}
+
 <!DOCTYPE html>
 <html lang="ch">
 <head>
@@ -38,38 +77,46 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="/publisher_list/">出版社列表 <span class="sr-only">(current)</span></a></li>
-                <li><a href="/book_list/">书籍列表</a></li>
+                <li><a href="/publisher_list/">出版社列表 <span class="sr-only">(current)</span></a></li>
+                <li><a href="/book_list/">书籍列表 <span class="sr-only">(current)</span></a></li>
 {#                <li><a href="#">Reports</a></li>#}
-                <li><a href="/author_list/">作者列表</a></li>
+                <li class="active"><a href="/author_list/" class="active">作者列表</a></li>
                 <li><a href="#">Export</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h2 class="sub-header">出版社列表</h2>
-            <a class="btn btn-primary btn-sm" href="/publisher_add/">新增</a>
+            <h2 class="sub-header">作者列表</h2>
+            <a class="btn btn-primary btn-sm" href="/author_add/">新增</a>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr>
                         <th>序号</th>
 {#                        <th>id</th>#}
-                        <th>出版社名称</th>
-                        <th>操作</th>
+                        <th>姓名</th>
+                        <th>代表作</th>
+                        <th>修改</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for i in all_publisher %}
+
+                    {% for author in all_authors %}
                         <tr>
-                            <td>{{ forloop.counter }}</td>
-{#                            <td>{{ i.id }}</td>#}
-                            <td>{{ i.name }}</td>
-                            <td>
-                                <a class="btn btn-danger btn-sm" href="/publisher_del/?id={{ i.id }}">删除</a>
-                                <a class="btn btn-primary btn-sm" href="/publisher_edit/?pk={{ i.pk }}">编辑</a>
-                            </td>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ author.name }}</td>
+                        <td>
+                            {% for book in author.books.all %}
+                            《{{ book.name }}》
+                            {% endfor %}
+
+                        </td>
+                        <td>
+                            <a class="btn btn-danger btn-sm" href="/author_del/?id={{ author.pk }}">删除</a>
+                            <a class="btn btn-primary btn-sm" href="/author_edit/?id={{ author.pk }}">编辑</a>
+                        </td>
                         </tr>
                     {% endfor %}
+
 
                     </tbody>
                 </table>
@@ -77,18 +124,4 @@
         </div>
     </div>
 </div>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<div class="xl-chrome-ext-bar" id="xl_chrome_ext_{4DB361DE-01F7-4376-B494-639E489D19ED}" style="display: none;">
-    <div class="xl-chrome-ext-bar__logo"></div>
-
-    <a id="xl_chrome_ext_download" href="javascript:;" class="xl-chrome-ext-bar__option">下载视频</a>
-    <a id="xl_chrome_ext_close" href="javascript:;" class="xl-chrome-ext-bar__close"></a>
-</div>
 </body>
-
-</html>
